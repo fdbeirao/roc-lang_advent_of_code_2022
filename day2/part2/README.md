@@ -1,4 +1,4 @@
-Advent of Code 2022 - Day 1 - Part 2
+Advent of Code 2022 - Day 2 - Part 2
 
 https://adventofcode.com/2022/day/2#part2
 
