@@ -5,8 +5,8 @@ app "app"
     imports [
         pf.Stdout,
         pf.Task.{ Task, await },
-        "input.txt" as input : Str,
-        "example.txt" as example : Str,
+        "../input.txt" as input : Str,
+        "../example.txt" as example : Str,
     ]
     provides [main] to pf
 
