@@ -4,7 +4,7 @@ app "app"
     }
     imports [
         pf.Stdout,
-        pf.Task.{ Task, await },
+        pf.Task.{ Task },
         "../input.txt" as input : Str,
         "../example.txt" as example : Str,
     ]
@@ -102,7 +102,7 @@ main =
             Err IncompleteGroupDetected ->
                 "\(label): Incomplete group detected"
 
-    _ <- (prettyPrint "example" example) |> Stdout.line |> await
+    _ <- (prettyPrint "example" example) |> Stdout.line |> Task.await
 
     (prettyPrint "input" input) |> Stdout.line
 

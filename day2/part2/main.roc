@@ -4,7 +4,7 @@ app "app"
     }
     imports [
         pf.Stdout,
-        pf.Task.{ Task, await },
+        pf.Task.{ Task },
         "../input.txt" as input : Str,
         "../example.txt" as example : Str,
     ]
@@ -116,7 +116,7 @@ main =
             Err (InvalidRoundLineInput line) ->
                 "\(label): unable to parse [\(line)] as valid input"
 
-    _ <- (prettyRes "example" example) |> Stdout.line |> await
+    _ <- (prettyRes "example" example) |> Stdout.line |> Task.await
 
     (prettyRes "input" input) |> Stdout.line
 

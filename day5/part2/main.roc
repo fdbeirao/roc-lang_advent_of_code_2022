@@ -5,7 +5,7 @@ app "app"
     }
     imports [
         pf.Stdout,
-        pf.Task.{ Task, await },
+        pf.Task.{ Task },
         "../input.txt" as input : Str,
         "../example.txt" as example : Str,
         stack.Stack.{ Stack },
@@ -202,7 +202,7 @@ main =
             Err NotEnoughCratesInOriginStack ->
                 "\(label): Reached a condition where there were not enough crates in the origin stack"
 
-    _ <- (prettyPrint "example" example) |> Stdout.line |> await
+    _ <- (prettyPrint "example" example) |> Stdout.line |> Task.await
 
     (prettyPrint "input" input) |> Stdout.line
 

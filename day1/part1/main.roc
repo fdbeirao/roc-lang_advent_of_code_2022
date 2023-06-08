@@ -4,7 +4,7 @@ app "app"
     }
     imports [
         pf.Stdout,
-        pf.Task.{ Task, await },
+        pf.Task.{ Task },
         "../input.txt" as input : Str,
         "../example.txt" as example : Str,
     ]
@@ -20,7 +20,7 @@ main =
             Err ListWasEmpty -> "\(label): there was an error (list was empty)"
             Err (UnableToParseAsU32 num) -> "\(label): there was an error (unable to parse [\(num)] as U32)"
 
-    _ <- (prettyRes "example" example) |> Stdout.line |> await
+    _ <- (prettyRes "example" example) |> Stdout.line |> Task.await
 
     (prettyRes "input" input) |> Stdout.line
 
