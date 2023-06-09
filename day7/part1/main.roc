@@ -158,19 +158,18 @@ tryGetDiskObject = \root, pathToFind ->
 obtainDiskObjectsByCriteria : DiskObject, (DiskObject -> Bool) -> List DiskObject
 obtainDiskObjectsByCriteria = \diskObject, criteriaFunc ->
     when diskObject is
-        Dir dirInfo ->
+        Dir {children} ->
             childrenThatMatchCriteria =
-                dirInfo.children
-                |> List.joinMap (\child -> child |> obtainDiskObjectsByCriteria criteriaFunc)
+                children |> List.joinMap (\child -> child |> obtainDiskObjectsByCriteria criteriaFunc)
 
-            if criteriaFunc (Dir dirInfo) then
-                [Dir dirInfo] |> List.concat (childrenThatMatchCriteria)
+            if criteriaFunc diskObject then
+                [diskObject] |> List.concat (childrenThatMatchCriteria)
             else
                 childrenThatMatchCriteria
 
-        File fileInfo ->
-            if criteriaFunc (File fileInfo) then
-                [File fileInfo]
+        File _ ->
+            if criteriaFunc diskObject then
+                [diskObject]
             else
                 []
 
