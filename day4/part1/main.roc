@@ -5,7 +5,7 @@ app "app"
     imports [
         pf.Stdout,
         pf.Task.{ Task },
-        "../input.txt" as input : Str,
+        "../puzzle.txt" as puzzle : Str,
         "../example.txt" as example : Str,
     ]
     provides [main] to pf
@@ -73,7 +73,7 @@ main =
 
     _ <- (prettyPrint "example" example) |> Stdout.line |> Task.await
 
-    (prettyPrint "input" input) |> Stdout.line
+    (prettyPrint "puzzle" puzzle) |> Stdout.line
 
 expect (tryParseAsRange "2-4") == Ok { start: 2, end: 4 }
 expect (tryParseAsRange "6-6") == Ok { start: 6, end: 6 }
@@ -115,4 +115,4 @@ expect (isFullyContainedWithin ({ start: 3, end: 7 }, { start: 2, end: 8 })) == 
 expect (isFullyContainedWithin ({ start: 6, end: 6 }, { start: 4, end: 6 })) == Bool.true
 
 expect (howManyPairsFullyContainTheOther example) == Ok 2
-expect (howManyPairsFullyContainTheOther input) == Ok 441
+expect (howManyPairsFullyContainTheOther puzzle) == Ok 441

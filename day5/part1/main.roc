@@ -6,7 +6,7 @@ app "app"
     imports [
         pf.Stdout,
         pf.Task.{ Task },
-        "../input.txt" as input : Str,
+        "../puzzle.txt" as puzzle : Str,
         "../example.txt" as example : Str,
         stack.Stack.{ Stack },
     ]
@@ -204,7 +204,7 @@ main =
 
     _ <- (prettyPrint "example" example) |> Stdout.line |> Task.await
 
-    (prettyPrint "input" input) |> Stdout.line
+    (prettyPrint "puzzle" puzzle) |> Stdout.line
 
 expect (emptyStacks |> addToStack 0 ["A", "B"] |> readCratesOnTopOfEachStack) == "B"
 expect (emptyStacks |> addToStack 0 ["A"] |> addToStack 0 ["B"] |> readCratesOnTopOfEachStack) == "B"
@@ -289,4 +289,4 @@ expect
     == "ABC"
 
 expect (trySolvePuzzle example) == Ok "CMZ"
-expect (trySolvePuzzle input) == Ok "DHBJQJCCW"
+expect (trySolvePuzzle puzzle) == Ok "DHBJQJCCW"

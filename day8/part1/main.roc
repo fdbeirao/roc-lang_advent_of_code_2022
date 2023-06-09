@@ -6,7 +6,7 @@ app "app"
         pf.Stdout,
         pf.Task.{ Task },
         "../example.txt" as example : Str,
-        "../input.txt" as input : Str,
+        "../puzzle.txt" as puzzle : Str,
     ]
     provides [main] to pf
 
@@ -125,7 +125,7 @@ main =
 
     _ <- (prettyPrint "example" example) |> Stdout.line |> Task.await
 
-    (prettyPrint "input" input) |> Stdout.line
+    (prettyPrint "puzzle" puzzle) |> Stdout.line
 
 ## -----------------------------------------------------------------------------
 
@@ -241,5 +241,5 @@ expect
 
 expect
     expected = Ok 1538
-    actually = input |> trySolvePuzzle
+    actually = puzzle |> trySolvePuzzle
     expected == actually

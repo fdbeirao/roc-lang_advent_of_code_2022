@@ -5,7 +5,7 @@ app "app"
     imports [
         pf.Stdout,
         pf.Task.{ Task },
-        "../input.txt" as input : Str,
+        "../puzzle.txt" as puzzle : Str,
         "../example.txt" as example : Str,
     ]
     provides [main] to pf
@@ -104,7 +104,7 @@ main =
 
     _ <- (prettyPrint "example" example) |> Stdout.line |> Task.await
 
-    (prettyPrint "input" input) |> Stdout.line
+    (prettyPrint "puzzle" puzzle) |> Stdout.line
 
 expect (tryGetPriority "a") == Ok 1
 expect (tryGetPriority "f") == Ok 6
@@ -133,4 +133,4 @@ expect (["a", "b", "c"] |> chunkEvery 3) == Ok [["a", "b", "c"]]
 expect (["a", "b", "c"] |> chunkEvery 4) == Ok [["a", "b", "c"]]
 
 expect (sumOfBadgesPerGroup example) == Ok 70
-expect (sumOfBadgesPerGroup input) == Ok 2821
+expect (sumOfBadgesPerGroup puzzle) == Ok 2821

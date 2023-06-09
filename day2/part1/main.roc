@@ -5,7 +5,7 @@ app "app"
     imports [
         pf.Stdout,
         pf.Task.{ Task },
-        "../input.txt" as input : Str,
+        "../puzzle.txt" as puzzle : Str,
         "../example.txt" as example : Str,
     ]
     provides [main] to pf
@@ -100,7 +100,7 @@ main =
 
     _ <- (prettyRes "example" example) |> Stdout.line |> Task.await
 
-    (prettyRes "input" input) |> Stdout.line
+    (prettyRes "puzzle" puzzle) |> Stdout.line
 
 expect (tryParseOpponentMove "A") == Ok Rock
 expect (tryParseOpponentMove "B") == Ok Paper
@@ -132,4 +132,4 @@ expect (tryGetGameScore "A Y") == Ok 8
 expect (tryGetGameScore "A Y\nB X") == Ok 9
 expect (tryGetGameScore "A Y\nB X\nC Z") == Ok 15
 expect (tryGetGameScore example) == Ok 15
-expect (tryGetGameScore input) == Ok 13682
+expect (tryGetGameScore puzzle) == Ok 13682

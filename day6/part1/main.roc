@@ -5,7 +5,7 @@ app "app"
     imports [
         pf.Stdout,
         pf.Task.{ Task },
-        "../input.txt" as input : Str,
+        "../puzzle.txt" as puzzle : Str,
     ]
     provides [main] to pf
 
@@ -71,7 +71,7 @@ main =
             Err NoStartOfPacketFound ->
                 "\(label): No start of packet found"
 
-    (prettyPrint "input" input) |> Stdout.line
+    (prettyPrint "puzzle" puzzle) |> Stdout.line
 
 expect (allDifferent ("" |> Str.graphemes)) == Bool.true
 expect (allDifferent ("a" |> Str.graphemes)) == Bool.true
@@ -96,4 +96,4 @@ expect (trySolvePuzzle "bvwbjplbgvbhsrlpgdmjqwftvncz") == Ok 5
 expect (trySolvePuzzle "nppdvjthqldpwncqszvftbrmjlhg") == Ok 6
 expect (trySolvePuzzle "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg") == Ok 10
 expect (trySolvePuzzle "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw") == Ok 11
-expect (trySolvePuzzle input) == Ok 1909
+expect (trySolvePuzzle puzzle) == Ok 1909

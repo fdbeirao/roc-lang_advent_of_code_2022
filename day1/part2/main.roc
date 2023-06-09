@@ -5,7 +5,7 @@ app "app"
     imports [
         pf.Stdout,
         pf.Task.{ Task },
-        "../input.txt" as input : Str,
+        "../puzzle.txt" as puzzle : Str,
         "../example.txt" as example : Str,
     ]
     provides [main] to pf
@@ -24,7 +24,7 @@ main =
 
     _ <- (example |> prettyRes "example" 3) |> Stdout.line |> Task.await
 
-    (input |> prettyRes "input" 3) |> Stdout.line
+    (puzzle |> prettyRes "puzzle" 3) |> Stdout.line
 
 tryGetCaloriesCarriedByTopElves : Str, Nat -> Result U32 [UnableToParseAsU32 Str]
 tryGetCaloriesCarriedByTopElves = \rawInput, topElvesToSum ->
@@ -88,4 +88,4 @@ expect (tryParseToU32 [["1", "2"], ["NaN"]]) == Err (UnableToParseAsU32 "NaN")
 
 expect (example |> tryGetCaloriesCarriedByTopElves 1) == Ok 24000
 expect (example |> tryGetCaloriesCarriedByTopElves 3) == Ok 45000
-expect (input |> tryGetCaloriesCarriedByTopElves 1) == Ok 68787
+expect (puzzle |> tryGetCaloriesCarriedByTopElves 1) == Ok 68787

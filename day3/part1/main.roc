@@ -5,7 +5,7 @@ app "app"
     imports [
         pf.Stdout,
         pf.Task.{ Task },
-        "../input.txt" as input : Str,
+        "../puzzle.txt" as puzzle : Str,
         "../example.txt" as example : Str,
     ]
     provides [main] to pf
@@ -77,7 +77,7 @@ main =
 
     _ <- (prettyPrint "example" example) |> Stdout.line |> Task.await
 
-    (prettyPrint "input" input) |> Stdout.line
+    (prettyPrint "puzzle" puzzle) |> Stdout.line
 
 expect (tryGetPriority "a") == Ok 1
 expect (tryGetPriority "f") == Ok 6
@@ -104,4 +104,4 @@ expect (trySplitInHalf "PmmdzqPrVvPwwTWBwg" |> Result.map findCommonItemTypes) =
 expect (trySplitInHalf "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn" |> Result.map findCommonItemTypes) == Ok (["v"] |> Set.fromList)
 
 expect (sumOfAllPriorities example) == Ok 157
-expect (sumOfAllPriorities input) == Ok 8233
+expect (sumOfAllPriorities puzzle) == Ok 8233

@@ -6,7 +6,7 @@ app "app"
         pf.Stdout,
         pf.Task.{ Task },
         "../example.txt" as example : Str,
-        "../input.txt" as input : Str,
+        "../puzzle.txt" as puzzle : Str,
     ]
     provides [main] to pf
 
@@ -158,7 +158,7 @@ tryGetDiskObject = \root, pathToFind ->
 obtainDiskObjectsByCriteria : DiskObject, (DiskObject -> Bool) -> List DiskObject
 obtainDiskObjectsByCriteria = \diskObject, criteriaFunc ->
     when diskObject is
-        Dir {children} ->
+        Dir { children } ->
             childrenThatMatchCriteria =
                 children |> List.joinMap (\child -> child |> obtainDiskObjectsByCriteria criteriaFunc)
 
@@ -178,12 +178,6 @@ isDir = \diskObject ->
     when diskObject is
         Dir _ -> Bool.true
         File _ -> Bool.false
-
-isFile : DiskObject -> Bool
-isFile = \diskObject ->
-    when diskObject is
-        Dir _ -> Bool.false
-        File _ -> Bool.true
 
 # Find all of the directories with a total size of at most 100000.
 # What is the sum of the total sizes of those directories?
@@ -213,7 +207,7 @@ main =
 
     _ <- (prettyPrint "example" example) |> Stdout.line |> Task.await
 
-    (prettyPrint "input" input) |> Stdout.line
+    (prettyPrint "puzzle" puzzle) |> Stdout.line
 
 # ############# Tests
 
@@ -359,4 +353,9 @@ expect
 expect
     expected = Ok 95437
     actually = trySolvePuzzle example
+    actually == expected
+
+expect
+    expected = Ok 1581595
+    actually = trySolvePuzzle puzzle
     actually == expected
