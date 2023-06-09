@@ -7,5 +7,12 @@ In this repository I am doing my best to implement the challenges from
 These implementations are my own learning journey. Feel free to take inspiration 
 from them, but I am not sure how "ideomatic roc" these implementations are.
 
-Have a great day,
-Fábio
+Have a great day 🙂
+
+## Running all the tests
+
+This is the command I am using to run all the tests in this repository:
+
+```
+find ./ -type f -name "*.roc" -exec roc test {} \;
+```
