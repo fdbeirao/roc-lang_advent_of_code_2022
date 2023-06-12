@@ -160,7 +160,7 @@ tryGetDiskObject = \root, pathToFind ->
 obtainDiskObjectsByCriteria : DiskObject, (DiskObject -> Bool) -> List DiskObject
 obtainDiskObjectsByCriteria = \diskObject, criteriaFunc ->
     when diskObject is
-        Dir {children} ->
+        Dir { children } ->
             childrenThatMatchCriteria =
                 children
                 |> List.joinMap (\child -> child |> obtainDiskObjectsByCriteria criteriaFunc)
